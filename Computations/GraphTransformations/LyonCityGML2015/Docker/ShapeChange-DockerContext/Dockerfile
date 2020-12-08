@@ -8,7 +8,5 @@ RUN apt-get update && apt-get install -q -y \
 
 WORKDIR UD-Graph/Transformations/UML-to-OWL/
 
-VOLUME["/data"]
-
 ENTRYPOINT ["python", "./run.py"]
 CMD ["./CityGML2.0_config.xml"]
