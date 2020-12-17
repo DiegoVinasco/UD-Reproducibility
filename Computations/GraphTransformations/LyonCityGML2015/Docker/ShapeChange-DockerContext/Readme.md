@@ -11,3 +11,8 @@ To use a custom shapechange configuration file replace the last argument with a 
 ```
 docker run -v [path to input folder]:/data-io liris/shapechange [path to configuration file]
 ```
+
+**Tip!** When using a custom shapechange configuration file, be sure to specify the output directory as the mounted drive, for example:
+```
+<targetParameter name="outputDirectory" value="/data-io/output/"/>
+```
