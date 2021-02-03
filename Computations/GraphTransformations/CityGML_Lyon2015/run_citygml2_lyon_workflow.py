@@ -1,11 +1,14 @@
 import os
+import sys
 import logging
 import shutil
 from demo_setup_citygml2_lyon_workflow import DemoSetupCityGML2Lyon
-from docker_shapechange import DockerShapechange
 from docker_xml2rdf import DockerXML2RDF
+from docker_shapechange import DockerShapechange
 
 if __name__ == "__main__":
+
+    sys.path.append('../')
     log_filename = os.path.join(os.getcwd(), 'run_citygml2_lyon_workflow.log')
 
     logger = logging.getLogger(__name__)

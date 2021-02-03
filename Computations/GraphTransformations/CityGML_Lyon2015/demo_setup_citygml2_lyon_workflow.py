@@ -9,7 +9,7 @@ class DemoSetupCityGML2Lyon():
     Download and setup CityGML 3.0 transformation pipeline
     """
     def __init__(self):
-        self.data_dir = 'data/'
+        self.data_dir = 'demo_data/'
         # shapechange stage
         self.stage1_dir = f'{self.data_dir}stage1/'
         # ontology linking stage
@@ -20,7 +20,7 @@ class DemoSetupCityGML2Lyon():
         self.demo_output_dir = f'{self.data_dir}output/'
 
         # filenames and directories
-        self.local_files_dir = '..'
+        self.local_files_dir = 'DemoCityGML2Lyon2015'
         self.shapechange_config_filename = 'CityGML2.0_config.xml'
         self.citygml_uml_filename = 'CityGML_2.0_Conceptual_Model.xml'
         self.citygml_owl_dir = 'CityGML_2.0_Ontology'
