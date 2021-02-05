@@ -1,6 +1,7 @@
 import os
 import sys
 import logging
+from git import Repo
 from docker_helper import DockerHelperBuild, DockerHelperTask
 
 
@@ -28,8 +29,7 @@ class DockerXML2RDF(DockerHelperBuild, DockerHelperTask):
             sys.exit(1)
 
     def create_docker_context(self, context_dir):
-        os.makedirs(context_dir)
-        os.system(f'git clone https://github.com/VCityTeam/UD-Graph-docker.git {context_dir}')
+        Repo.clone_from('https://github.com/VCityTeam/UD-Graph-docker.git', context_dir)
 
     def set_input_filename(self, input_filename):
         full_input_filename = os.path.join(self.mounted_input_dir,
