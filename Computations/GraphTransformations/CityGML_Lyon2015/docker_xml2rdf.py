@@ -1,17 +1,19 @@
 import os
 import sys
 import logging
-from docker_helper import DockerHelperTask
+from docker_helper import DockerHelperBuild, DockerHelperTask
 
 
-class DockerXML2RDF(DockerHelperTask):
+class DockerXML2RDF(DockerHelperBuild, DockerHelperTask):
 
     def __init__(self):
         super().__init__('liris/ud-graph', 'latest')
-        # this_file_dir = os.path.dirname(os.path.realpath(__file__))
-        # context_dir = os.path.join(this_file_dir,
-                                #    'ShapeChange-DockerContext')
-        # self.build(context_dir)
+        this_file_dir = os.path.dirname(os.path.realpath(__file__))
+        context_dir = os.path.join(this_file_dir,
+                                   'UD-Graph-DockerContext')
+        if not os.path.isdir(context_dir):
+            self.create_docker_context(context_dir)
+        self.build(context_dir)
 
         self.local_input_dir = '/home/user/UD-Graph/Transformations/input/'
         self.local_output_dir = '/home/user/UD-Graph/Transformations/output/'
@@ -24,6 +26,10 @@ class DockerXML2RDF(DockerHelperTask):
         if self.input_filename is None:
             logging.error('Missing input_filename for running. Exiting')
             sys.exit(1)
+
+    def create_docker_context(self, context_dir):
+        os.makedirs(context_dir)
+        os.system(f'git clone https://github.com/VCityTeam/UD-Graph-docker.git {context_dir}')
 
     def set_input_filename(self, input_filename):
         full_input_filename = os.path.join(self.mounted_input_dir,
